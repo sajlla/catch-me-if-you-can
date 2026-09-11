@@ -1,1 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#0a0a14">
+  <title>Escape the Red Button</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+  <div id="app">
+
+    <!-- ============ START SCREEN ============ -->
+    <section id="screen-start" class="screen">
+      <div class="glass card start-card">
+        <div class="mascot">🔴</div>
+        <h1 class="neon-red">Escape the <span>Red Button</span></h1>
+        <p class="tagline">The button that <b>really</b> doesn't want to be clicked.</p>
+
+        <div class="glass inner instructions">
+          <h3>How to play</h3>
+          <ul>
+            <li>Catch the <span class="dont">DO NOT CLICK</span> button with your cursor or finger.</li>
+            <li>It dodges, teleports, shrinks, hides… and even reads your mind.</li>
+            <li>Beat all <b>7 levels</b> and find out what the prize really is.</li>
+          </ul>
+        </div>
+
+        <div class="difficulty-picker">
+          <span class="diff-label">Difficulty</span>
+          <div class="diff-btns">
+            <button data-diff="easy">😌 Easy</button>
+            <button data-diff="normal" class="active">🙂 Normal</button>
+            <button data-diff="hard">😤 Hard</button>
+            <button data-diff="insane">🔥 Insane</button>
+          </div>
+        </div>
+
+        <button id="start-btn" class="btn btn-primary glow">▶&nbsp; START</button>
+        <button id="leaderboard-btn" class="btn btn-ghost">🏆 Leaderboard</button>
+      </div>
+    </section>
+
+    <!-- ============ GAME SCREEN ============ -->
+    <section id="screen-game" class="screen hidden">
+      <div class="hud glass">
+        <div class="hud-item"><span class="hud-label">Level</span><span id="hud-level" class="hud-value">1/7</span></div>
+        <div class="hud-item"><span class="hud-label">Attempts</span><span id="hud-attempts" class="hud-value">0</span></div>
+        <div class="hud-item"><span class="hud-label">Time</span><span id="hud-time" class="hud-value">0:00</span></div>
+        <div class="hud-item"><span class="hud-label">Score</span><span id="hud-score" class="hud-value">0</span></div>
+        <div class="hud-item progress">
+          <div id="hud-progress" class="progress-track"><span></span></div>
+        </div>
+        <button id="mute-btn" class="icon-btn" title="Toggle sound">🔊</button>
+        <button id="restart-btn" class="icon-btn" title="Restart run">↻</button>
+      </div>
+
+      <div id="game-area">
+        <div id="level-banner" class="level-banner">
+          <div class="lb-title"></div>
+          <div class="lb-desc"></div>
+        </div>
+        <div class="cover-zone cz-1"></div>
+        <div class="cover-zone cz-2"></div>
+        <div class="cover-zone cz-3"></div>
+        <button id="red-button" class="red-btn"><span>DO NOT<br>CLICK</span></button>
+        <canvas id="fx-canvas"></canvas>
+        <div id="float-msg"></div>
+      </div>
+    </section>
+
+    <!-- ============ END SCREEN ============ -->
+    <section id="screen-end" class="screen hidden">
+      <div class="glass card end-card">
+        <div class="emoji-big">💀</div>
+        <h2 class="neon-red">YOU FINALLY GOT ME.</h2>
+        <p class="truth">Unfortunately, there was never a prize.</p>
+
+        <div class="glass inner stats">
+          <div class="stat"><span class="stat-label">Score</span><span id="end-score" class="stat-value">0</span></div>
+          <div class="stat"><span class="stat-label">Time</span><span id="end-time" class="stat-value">0:00</span></div>
+          <div class="stat"><span class="stat-label">Attempts</span><span id="end-attempts" class="stat-value">0</span></div>
+          <div class="stat"><span class="stat-label">Difficulty</span><span id="end-diff" class="stat-value">Normal</span></div>
+        </div>
+
+        <div class="save-row">
+          <input id="name-input" type="text" maxlength="12" placeholder="Your name" autocomplete="off">
+          <button id="save-score-btn" class="btn btn-primary">💾 Save</button>
+        </div>
+
+        <div class="end-actions">
+          <button id="play-again-btn" class="btn btn-primary glow">▶ Play Again</button>
+          <button id="share-btn" class="btn btn-ghost">📤 Share</button>
+        </div>
+        <button id="lb-btn-2" class="btn btn-ghost small">🏆 Leaderboard</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ TOASTS ============ -->
+  <div id="toasts"></div>
+
+  <!-- ============ LEADERBOARD MODAL ============ -->
+  <div id="lb-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="glass modal-card">
+      <h3>🏆 Top 10</h3>
+      <table id="lb-table">
+        <thead><tr><th>#</th><th>Name</th><th>Score</th><th>Time</th><th>Att</th><th>Diff</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <button id="lb-close" class="btn btn-ghost">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
